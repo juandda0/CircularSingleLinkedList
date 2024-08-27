@@ -44,8 +44,6 @@ public class UserRepositoryImpl implements UserRepository {
         throw new IllegalArgumentException("User with ID: " + updatedUser.getId() + " not found.");
     }
 
-
-
     @Override
     public void deleteById(Long id) {
         for (User user : userList) {
@@ -54,7 +52,6 @@ public class UserRepositoryImpl implements UserRepository {
                 return;
             }
         }
-        System.out.println("Throwing exception for User with ID: " + id); // Debugging line
         throw new IllegalArgumentException("User with ID: " + id + " not found.");
     }
 

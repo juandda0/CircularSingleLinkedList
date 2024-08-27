@@ -8,54 +8,54 @@ import org.juannn.services.UserService;
 
 public class Main {
     public static void main(String[] args) {
-        // Crear una lista enlazada circular y el repositorio de usuarios
+        // Create a circular singly linked list and the user repository
         CircularSinglyLinkedList<User> userList = new CircularSinglyLinkedList<>();
         UserRepository userRepository = new UserRepositoryImpl(userList);
         UserService userService = new UserService(userRepository);
 
-        // Crear algunos usuarios
+        // Create some users
         User user1 = new User(1L, "John Doe");
         User user2 = new User(2L, "Jane Doe");
         User user3 = new User(3L, "Alice Smith");
 
-        // Guardar usuarios
+        // Save users
         userService.save(user1);
         userService.save(user2);
         userService.save(user3);
 
-        // Mostrar todos los usuarios
-        System.out.println("Usuarios guardados:");
+        // Display all users
+        System.out.println("Saved users:");
         userService.findAll().forEach(System.out::println);
 
-        // Buscar un usuario por ID
-        System.out.println("\nBuscando usuario con ID 2:");
+        // Find a user by ID
+        System.out.println("\nSearching for user with ID 2:");
         User foundUser = userService.findById(2L);
         System.out.println(foundUser);
 
-        // Actualizar un usuario
-        System.out.println("\nActualizando el nombre del usuario con ID 1:");
+        // Update a user
+        System.out.println("\nUpdating the name of the user with ID 1:");
         User updatedUser = new User(1L, "Johnathan Doe");
         userService.update(updatedUser);
         userService.findAll().forEach(System.out::println);
 
-        // Verificar si un usuario existe por ID
-        System.out.println("\n¿Existe usuario con ID 3?");
+        // Check if a user exists by ID
+        System.out.println("\nDoes a user with ID 3 exist?");
         boolean exists = userService.existsById(3L);
         System.out.println("Exists: " + exists);
 
-        // Contar el número de usuarios
-        System.out.println("\nNúmero total de usuarios:");
+        // Count the number of users
+        System.out.println("\nTotal number of users:");
         Long count = userService.count();
         System.out.println("Count: " + count);
 
-        // Eliminar un usuario por ID
-        System.out.println("\nEliminando usuario con ID 2:");
+        // Delete a user by ID
+        System.out.println("\nDeleting user with ID 2:");
         userService.delete(2L);
         userService.findAll().forEach(System.out::println);
 
-        // Intentar encontrar un usuario eliminado
+        // Attempt to find a deleted user
         try {
-            System.out.println("\nBuscando usuario con ID 2:");
+            System.out.println("\nSearching for user with ID 2:");
             userService.findById(2L);
         } catch (Exception e) {
             System.out.println(e.getMessage());
